@@ -1,0 +1,54 @@
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;SkyLite Gallery - PolyStone Creations&lt;/title&gt;
+  &lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;a href="index.html" class="back"&gt;&amp;lt; Home&lt;/a&gt;
+    &lt;h1&gt;SkyLite™ Gallery&lt;/h1&gt;
+    &lt;p&gt;38+ handcrafted slab variations. AS9100D certified.&lt;/p&gt;
+  &lt;/header&gt;
+
+  &lt;div class="gallery-grid"&gt;
+    &lt;!-- Dynamic load placeholder --&gt;
+    &lt;div class="item"&gt;&lt;img src="img/raw/ACLA Studio/1.jpg" alt="Slab 1"&gt;&lt;/div&gt;
+    &lt;!-- More auto via JS --&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    const grid = document.querySelector('.gallery-grid');
+    // Load all raw slabs dynamically
+    fetch('slab-list.json') // Future: generate list
+      .then(r =&gt; r.json())
+      .then(slabs =&gt; {
+        slabs.forEach(slab =&gt; {
+          const item = document.createElement('div');
+          item.className = 'item';
+          item.innerHTML = `&lt;img src="${slab.path}" alt="${slab.name}" loading="lazy"&gt;&lt;p&gt;${slab.name}&lt;/p&gt;`;
+          grid.appendChild(item);
+        });
+      })
+      .catch(() =&gt; {
+        // Fallback: known SKY codes
+        ['SKY121-Dark_Glacier.jpg', 'SKY122-Pink_Onyx.jpg', 'SKY123-Steel_Gray.jpg'].forEach(name =&gt; {
+          const item = document.createElement('div');
+          item.className = 'item';
+          item.innerHTML = `&lt;img src="img/raw/ACLA Studio/${name}" alt="${name}" loading="lazy"&gt;&lt;p&gt;${name}&lt;/p&gt;`;
+          grid.appendChild(item);
+        });
+      });
+    imgs.forEach(src =&gt; {
+      const item = document.createElement('div');
+      item.className = 'item';
+      item.innerHTML = `&lt;img src="${src}" alt="SkyLite Slab" loading="lazy"&gt;`;
+      grid.appendChild(item);
+    });
+  &lt;/script&gt;
+
+  &lt;script src="js/main.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
