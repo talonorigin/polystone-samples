@@ -37,7 +37,7 @@
         ['SKY121-Dark_Glacier.jpg', 'SKY122-Pink_Onyx.jpg', 'SKY123-Steel_Gray.jpg'].forEach(name =&gt; {
           const item = document.createElement('div');
           item.className = 'item';
-          item.innerHTML = `&lt;img src="img/raw/ACLA Studio/${name}" alt="${name}" loading="lazy"&gt;&lt;p&gt;${name}&lt;/p&gt;`;
+          item.innerHTML = `&lt;img src="img/raw/${name}" alt="${name}" loading="lazy"&gt;&lt;p&gt;${name}&lt;/p&gt;`;
           grid.appendChild(item);
         });
       });
